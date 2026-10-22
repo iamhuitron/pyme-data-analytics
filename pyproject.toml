@@ -24,7 +24,11 @@ dev = [
 [project.scripts]
 pyme-analytics = "pyme_analytics.cli:main"
 
+[tool.setuptools.packages.find]
+include = ["pyme_analytics*"]
+
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+pythonpath = ["."]
 python_files = ["test_*.py"]
 addopts = "-v --strict-markers"
