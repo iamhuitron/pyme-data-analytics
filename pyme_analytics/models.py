@@ -32,6 +32,11 @@ class CustomerSegment:
     m_score: int
     segment_label: str
 
+    @property
+    def rfm_combined_score(self) -> str:
+        """Returns the concatenated RFM score string, e.g. '555' or '341'."""
+        return f"{self.r_score}{self.f_score}{self.m_score}"
+
 
 @dataclass
 class ABCItemClassification:
@@ -42,6 +47,11 @@ class ABCItemClassification:
     pct_ingresos: float
     pct_acumulado: float
     categoria_abc: str  # 'A', 'B', 'C'
+
+    @property
+    def is_top_performer(self) -> bool:
+        """Returns True if the item belongs to Class A (Pareto top 80% revenue)."""
+        return self.categoria_abc == "A"
 
 
 @dataclass
