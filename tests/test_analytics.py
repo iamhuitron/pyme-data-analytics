@@ -22,6 +22,8 @@ def test_rfm_segmentation(sample_data):
     assert 1 <= first.f_score <= 5
     assert 1 <= first.m_score <= 5
     assert len(first.segment_label) > 0
+    assert len(first.rfm_combined_score) == 3
+    assert first.rfm_combined_score.isdigit()
 
 def test_abc_pareto(sample_data):
     transactions, _ = sample_data
@@ -30,6 +32,7 @@ def test_abc_pareto(sample_data):
     assert len(abc) > 0
     # Must be sorted descending by revenue
     assert abc[0].ingresos_totales >= abc[-1].ingresos_totales
+    assert abc[0].is_top_performer is True
     # Must contain category A
     categories = {i.categoria_abc for i in abc}
     assert "A" in categories
